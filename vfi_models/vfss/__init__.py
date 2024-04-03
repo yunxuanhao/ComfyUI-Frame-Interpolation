@@ -26,7 +26,7 @@ CKPTS_PATH_CONFIG = {
 class CommonModelInference(nn.Module):
     def __init__(self, model_type):
         super(CommonModelInference, self).__init__()
-        from model.VFSS_infer_b import Model as VFSS
+        from .model.VFSS_infer_b import Model as VFSS
         self.model = VFSS()
         self.model.eval()
         self.model.device()
