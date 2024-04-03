@@ -74,7 +74,7 @@ class CommonModelInference(nn.Module):
         )
         return output[:, :, :h, :w]
 
-class VFSS_Fortuna_VFI:
+class VFSS_VFI:
     @classmethod
     def INPUT_TYPES(s):
         return {

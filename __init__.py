@@ -17,12 +17,14 @@ from vfi_models.film import FILM_VFI
 from vfi_models.stmfnet import STMFNet_VFI
 from vfi_models.flavr import FLAVR_VFI
 from vfi_models.cain import CAIN_VFI
+from vfi_models.vfss import VFSS_VFI
 from vfi_utils import MakeInterpolationStateList
     
 NODE_CLASS_MAPPINGS = {
     "KSampler Gradually Adding More Denoise (efficient)": Gradually_More_Denoise_KSampler,
 #    "EISAI VFI": EISAI_VFI,
     "GMFSS Fortuna VFI": GMFSS_Fortuna_VFI,
+    "VFSS VFI": VFSS_VFI,
     "IFRNet VFI": IFRNet_VFI,
     "IFUnet VFI": IFUnet_VFI,
     "M2M VFI": M2M_VFI,
