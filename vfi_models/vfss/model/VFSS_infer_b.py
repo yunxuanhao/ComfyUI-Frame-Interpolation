@@ -3,11 +3,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 
-from model.core.Networks import build_network as VideoFlow
-from model.MetricNet import MetricNet
-from model.FeatureNet import FeatureNet
-from model.FusionNet_b import GridNet
-from model.softsplat import softsplat as warp
+from .core.Networks import build_network as VideoFlow
+from .MetricNet import MetricNet
+from .FeatureNet import FeatureNet
+from .FusionNet_b import GridNet
+from .softsplat import softsplat as warp
 
 device = torch.device("cuda")
 
