@@ -89,11 +89,10 @@ class Model:
 
         return flow12, flow21, metric0, metric1, feat_ext0, feat_ext1
 
-    def inference(self, img0, img1, img2, img3, reuse_things, timestep):
-        flow12, metric0, feat11, feat12, feat13 = reuse_things[0], reuse_things[2], reuse_things[4][0], reuse_things[4][
-            1], reuse_things[4][2]
-        flow21, metric1, feat21, feat22, feat23 = reuse_things[1], reuse_things[3], reuse_things[5][0], reuse_things[5][
-            1], reuse_things[5][2]
+    def inference(self, img0, img1, img2, img3, flow12, flow21, metric0, metric1, feat_ext0, feat_ext1, timestep):
+        
+        feat11, feat12, feat13 = feat_ext0[0], feat_ext0[1], feat_ext0[2]
+        feat21, feat22, feat23 = feat_ext1[0], feat_ext1[1], feat_ext1[2]
 
         F1t = timestep * flow12
         F2t = (1 - timestep) * flow21

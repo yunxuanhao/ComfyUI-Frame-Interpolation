@@ -44,11 +44,23 @@ class CommonModelInference(nn.Module):
         padding = (0, pw - w, 0, ph - h)
         I0 = F.pad(I0, padding)
         I1 = F.pad(I1, padding)
-        reusethings = self.model.reuse(I0, I0, I1, I1, scale)
+        (
+            flow12,
+            flow21,
+            metric0,
+            metric1,
+            feat_ext0,
+            feat_ext1
+        ) = self.model.reuse(I0, I0, I1, I1, scale)
 
         output = self.model.inference(
             I0, I0, I1, I1,
-            reusethings,
+            flow12,
+            flow21,
+            metric0,
+            metric1,
+            feat_ext0,
+            feat_ext1,
             timestep,
         )
         return output[:, :, :h, :w]
