@@ -14,7 +14,7 @@ import numpy as np
 BASE_MODEL_DOWNLOAD_URLS = [
     "https://github.com/styler00dollar/VSGAN-tensorrt-docker/releases/download/models/",
     "https://github.com/Fannovel16/ComfyUI-Frame-Interpolation/releases/download/models/",
-    "https://github.com/dajes/frame-interpolation-pytorch/releases/download/v1.0.0/"
+    "https://github.com/dajes/frame-interpolation-pytorch/releases/download/v1.0.0/",
     "https://github.com/yunxuanhao/ComfyUI-Frame-Interpolation/releases/download/0.0.1/"
 ]
 

@@ -15,9 +15,9 @@ device = torch.device("cuda")
 class Model:
     def __init__(self, mode='MOF'):
         if mode == 'BOF':  # 3 frame inputs, not supported currently
-            from model.configs.sintel_submission import get_cfg
+            from .configs.sintel_submission import get_cfg
         elif mode == 'MOF':  # n frame inputs. only 4 frame inputs are supported currently
-            from model.configs.multiframes_sintel_submission import get_cfg
+            from .configs.multiframes_sintel_submission import get_cfg
             cfg = get_cfg()
             cfg.input_frames = 4
         self.mode = mode
@@ -48,8 +48,8 @@ class Model:
 
         self.flownet.load_state_dict(torch.load(path_dict["flownet"]))
         self.metricnet.load_state_dict(torch.load(path_dict["metricnet"]))
-        self.feat_ext.load_state_dict(torch.load(torch.load(path_dict["feat_ext"])))
-        self.fusionnet.load_state_dict(torch.load(torch.load(path_dict["fusionnet"])))
+        self.feat_ext.load_state_dict(torch.load(path_dict["feat_ext"]))
+        self.fusionnet.load_state_dict(torch.load(path_dict["fusionnet"]))
 
     def reuse(self, img0, img1, img2, img3, scale):
         feat11, feat12, feat13 = self.feat_ext(img1)

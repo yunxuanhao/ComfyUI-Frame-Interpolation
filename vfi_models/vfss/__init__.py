@@ -10,16 +10,16 @@ from comfy.model_management import get_torch_device
 GLOBAL_MODEL_TYPE = pathlib.Path(__file__).parent.name
 CKPTS_PATH_CONFIG = {
     "VFSS_anime": {
-        "flownet": (GLOBAL_MODEL_TYPE, "vfss_real_flownet.pkl"),
-        "metricnet": (GLOBAL_MODEL_TYPE, "vfss_real_metric.pkl"),
-        "feat_ext": (GLOBAL_MODEL_TYPE, "vfss_real_feat.pkl"),
-        "fusionnet": (GLOBAL_MODEL_TYPE, "vfss_real_fusionnet.pkl")
-    },
-    "VFSS_real": {
         "flownet": (GLOBAL_MODEL_TYPE, "vfss_anime_flownet.pkl"),
         "metricnet": (GLOBAL_MODEL_TYPE, "vfss_anime_metric.pkl"),
         "feat_ext": (GLOBAL_MODEL_TYPE, "vfss_anime_feat.pkl"),
         "fusionnet": (GLOBAL_MODEL_TYPE, "vfss_anime_fusionnet.pkl")
+    },
+    "VFSS_real": {
+        "flownet": (GLOBAL_MODEL_TYPE, "vfss_real_flownet.pkl"),
+        "metricnet": (GLOBAL_MODEL_TYPE, "vfss_real_metric.pkl"),
+        "feat_ext": (GLOBAL_MODEL_TYPE, "vfss_real_feat.pkl"),
+        "fusionnet": (GLOBAL_MODEL_TYPE, "vfss_real_fusionnet.pkl")
     }
 }
 
@@ -44,32 +44,11 @@ class CommonModelInference(nn.Module):
         padding = (0, pw - w, 0, ph - h)
         I0 = F.pad(I0, padding)
         I1 = F.pad(I1, padding)
-        (
-            flow01,
-            flow10,
-            metric0,
-            metric1,
-            feat11,
-            feat12,
-            feat13,
-            feat21,
-            feat22,
-            feat23,
-        ) = self.model.reuse(I0, I1, scale)
+        reusethings = self.model.reuse(I0, I0, I1, I1, scale)
 
         output = self.model.inference(
-            I0,
-            I1,
-            flow01,
-            flow10,
-            metric0,
-            metric1,
-            feat11,
-            feat12,
-            feat13,
-            feat21,
-            feat22,
-            feat23,
+            I0, I0, I1, I1,
+            reusethings,
             timestep,
         )
         return output[:, :, :h, :w]
